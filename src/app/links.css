@@ -1,0 +1,5 @@
+/* A live channel is a link, and the ported stylesheet only styles the buttons. */
+.socials a{color:inherit;background:0 0;padding:4px;transition:transform .2s;display:inline-flex;align-items:center}
+.socials a:hover{transform:translateY(-3px)}
+.social-links a{border:1px solid #cabbcf;border-radius:0;align-items:center;gap:12px;width:auto;height:48px;padding:0 20px;font-size:14px;transition:background .3s,transform .3s;display:flex}
+.social-links a:hover{background:#e8dce9;transform:translateY(-2px)}

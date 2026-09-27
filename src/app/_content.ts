@@ -6,6 +6,8 @@
 /** The console runs as its own service; every link from the site to it is a full load to that origin. */
 export const CONSOLE_HREF = `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.bursar.world'}/console`;
 
+export const X_URL = 'https://x.com/UseBursar';
+
 export type Capability = {
   readonly slug: string;
   readonly name: string;
