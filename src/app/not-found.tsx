@@ -1,6 +1,10 @@
+import type { Metadata } from 'next';
+
 import { Action } from './_components/action';
 import { Eyebrow } from './_components/eyebrow';
 import { SiteHeader } from './_components/site-header';
+
+export const metadata: Metadata = { title: 'Page not found | Bursar' };
 
 export default function SiteNotFound() {
   return (

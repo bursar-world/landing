@@ -16,8 +16,13 @@ Requires Node 22 and pnpm 11 (`corepack enable` picks up the pinned version).
 ```sh
 pnpm install
 pnpm dev                 # http://localhost:4320
+pnpm typecheck           # tsc --noEmit
 pnpm build               # static export in out/
 ```
+
+The export writes each route as a flat file (`out/about.html`, `out/blog/a-wallet-is-not-a-budget.html`),
+so `out/` needs a static server that maps clean URLs like `/about` onto them. Render's static
+sites and `npx serve out` both do this; a plain file server will 404 on everything but the home page.
 
 | Variable | Default | What it sets |
 |---|---|---|
@@ -32,6 +37,7 @@ pnpm build               # static export in out/
 | `src/app/_content.ts` | Every piece of copy and data the pages render. |
 | `src/app/_components/` | Header, footer, buttons, dialogs, motion. |
 | `src/app/site.css` | The design system. |
+| `src/app/site-extra.css` | Our additions on top of it. |
 | `public/` | Brand marks, photography and fonts. See [NOTICE.md](NOTICE.md) for their terms. |
 
 ## Contributing

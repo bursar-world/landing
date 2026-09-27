@@ -6,8 +6,9 @@ import { SiteHeader } from '../_components/site-header';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Contact Bursar | Join the community',
-  description: 'Follow Bursar on X and Telegram for updates, conversations, and a direct line to our community.',
-  ogDescription: 'Give autonomy a boundary. Reach the Bursar community channels.',
+  description: 'Email Bursar at hello@bursar.world, follow Bursar on X for updates, and find the code on GitHub.',
+  ogDescription: 'Give autonomy a boundary. Email Bursar or reach the community channels.',
+  path: '/contact',
 });
 
 /** The footer carries the contact block, so this page is the header and the footer alone. */
@@ -17,7 +18,7 @@ export default function ContactPage() {
       <div id="top" className="inner-header">
         <SiteHeader />
       </div>
-      <SiteFooter />
+      <SiteFooter contact />
     </>
   );
 }

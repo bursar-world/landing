@@ -42,7 +42,7 @@ export function SplitWords({
   scroll = false,
 }: {
   readonly children: ReactNode;
-  readonly as?: 'h2' | 'p';
+  readonly as?: 'h1' | 'h2' | 'p';
   readonly className?: string;
   readonly scroll?: boolean;
 }) {
@@ -105,7 +105,7 @@ export function SplitWords({
             animate(
               word,
               { opacity: 1, y: 0 },
-              { type: 'spring', bounce: 0, duration: 0.8, delay: (Tag === 'h2' ? 0.2 : 0.3) + line * 0.05 },
+              { type: 'spring', bounce: 0, duration: 0.8, delay: (Tag === 'p' ? 0.3 : 0.2) + line * 0.05 },
             ),
           );
         });

@@ -1,6 +1,6 @@
 /**
  * Everything the public site says, kept apart from the markup so the pages stay about structure.
- * The copy is carried over verbatim from the Lovable build; edits belong in a separate pass.
+ * The copy is carried over verbatim from the original build; edits belong in a separate pass.
  */
 
 /** The console runs as its own service; every link from the site to it is a full load to that origin. */
@@ -76,6 +76,8 @@ export type Post = {
   readonly category: string;
   readonly intro: string;
   readonly body: readonly string[];
+  /** Carried by the post itself, so a new post cannot reach a card without an image of its own. */
+  readonly art: { readonly src: string; readonly alt: string };
 };
 
 export const posts: readonly Post[] = [
@@ -89,6 +91,7 @@ export const posts: readonly Post[] = [
       'The mandate records a total budget and a period cap, plus spend classes, allowed counterparties, expiry, and the funding lane. Those controls make the scope of delegated authority explicit.',
       'Start with a narrow mandate. Choose the services your agent needs, specify the counterparties, and set an expiry. Amend the mandate as the task changes instead of handing the agent an unrestricted balance.',
     ],
+    art: { src: '/stock/control.jpg', alt: 'Structured concrete stairs' },
   },
   {
     slug: 'treasuries-inside-the-mandate',
@@ -100,6 +103,7 @@ export const posts: readonly Post[] = [
       'Accounting uses an asset’s NAV and applicable multiplier. A projected yield is not a balance, and a stale NAV must not silently create new spending power.',
       'Stock tokens and treasury tokens remain subject to eligibility and jurisdiction requirements. The registry and price guards are part of the spending boundary.',
     ],
+    art: { src: '/stock/columns.jpg', alt: 'Treasury-inspired classical columns' },
   },
   {
     slug: 'privacy-with-accountability',
@@ -111,6 +115,7 @@ export const posts: readonly Post[] = [
       'Counterparties need evidence that the rules are satisfied. A within-mandate proof can establish that a spend respects a cap, class, and counterparty rule without disclosing the complete mandate.',
       'Dispute resolution uses scoped disclosure grants. Public epoch solvency proofs provide a separate accountability surface without publishing every private transaction.',
     ],
+    art: { src: '/stock/privacy.jpg', alt: 'Reflective glass façade' },
   },
   {
     slug: 'verify-hold-settle-repay',
@@ -122,15 +127,8 @@ export const posts: readonly Post[] = [
       'Settlement records the receipt and completes the approved payment path. Agent hires use escrow, while eligible stock purchases pass through the settlement router and its price checks.',
       'Repayment applies to the collateralized lane. It is separate from prefunded spending, and its debt and collateral health must remain explicit.',
     ],
+    art: { src: '/stock/structure.jpg', alt: 'Modern infrastructure' },
   },
-];
-
-/** Article cards pick their art by position, so the fourth post always gets the fourth image. */
-export const articleArt: readonly { readonly src: string; readonly alt: string }[] = [
-  { src: '/stock/control.jpg', alt: 'Structured concrete stairs' },
-  { src: '/stock/columns.jpg', alt: 'Treasury-inspired classical columns' },
-  { src: '/stock/privacy.jpg', alt: 'Reflective glass façade' },
-  { src: '/stock/structure.jpg', alt: 'Modern infrastructure' },
 ];
 
 export type Pair = readonly [title: string, copy: string];
@@ -218,7 +216,7 @@ export const roles: readonly Triple[] = [
   ],
   [
     'Agents',
-    'Act with purpose.',
+    'Act within limits.',
     'Pay for services, hire other agents, and operate within the scope of a mandate.',
   ],
   [

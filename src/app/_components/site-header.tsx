@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 
 import { menuLinks } from '../_content';
 import { Action } from './action';
@@ -16,6 +16,7 @@ import { Socials } from './socials';
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [time, setTime] = useState('');
+  const menuId = useId();
 
   useEffect(() => {
     const tick = () => setTime(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
@@ -27,9 +28,18 @@ export function SiteHeader() {
   return (
     <>
       <header className="site-header">
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-          <span>⠿</span>
-          {menuOpen ? 'Close' : 'Menu'}
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls={menuId}
+          aria-haspopup="dialog"
+          aria-label={menuOpen ? 'Close menu' : undefined}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span aria-hidden="true">⠿</span>
+          {/* While open the dialog's own close button takes over, and this one sits under the backdrop. */}
+          {!menuOpen && 'Menu'}
         </button>
         <a className="small-wordmark" href="/">
           BURSAR®
@@ -41,7 +51,7 @@ export function SiteHeader() {
           Launch app <small>/Bursar</small>
         </Action>
       </header>
-      <Dialog open={menuOpen} onOpenChange={setMenuOpen}>
+      <Dialog id={menuId} open={menuOpen} onOpenChange={setMenuOpen}>
         <DialogContent className="nav-modal">
           <DialogTitle className="eyebrow">Explore Bursar</DialogTitle>
           <DialogDescription className="sr-only">Website navigation</DialogDescription>

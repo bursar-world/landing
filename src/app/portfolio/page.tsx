@@ -11,6 +11,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     'Mandate controls, RWA funding, and confidential settlement: the capabilities behind Bursar agent budgets.',
   ogDescription: 'Explore the control, capital, and privacy layers of the Bursar protocol.',
+  path: '/portfolio',
 });
 
 export default function PortfolioPage() {
@@ -29,7 +30,7 @@ export default function PortfolioPage() {
         <div className="article-grid">
           {capabilities.map((capability) => (
             <a key={capability.slug} className="article-card" href={'/portfolio/' + capability.slug}>
-              {/* eslint-disable-next-line @next/next/no-img-element -- matches the Lovable markup and CSS */}
+              {/* eslint-disable-next-line @next/next/no-img-element -- matches the original markup and CSS */}
               <img className="article-art" src={capability.image} alt={capability.name} />
               <Eyebrow>{capability.category}</Eyebrow>
               <h3>{capability.title}</h3>

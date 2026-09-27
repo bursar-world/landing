@@ -1,0 +1,20 @@
+/* A live channel is a link, and the ported stylesheet only styles the buttons. */
+.socials a{color:inherit;background:0 0;padding:4px;transition:transform .2s;display:inline-flex;align-items:center}
+.socials a:hover{transform:translateY(-3px)}
+.social-links a{border:1px solid #cabbcf;border-radius:0;align-items:center;gap:12px;width:auto;height:48px;padding:0 20px;font-size:14px;transition:background .3s,transform .3s;display:flex}
+.social-links a:hover{background:#e8dce9;transform:translateY(-2px)}
+
+/* Labels the ported stylesheet leaves on the browser monospace, moved onto Geist Mono. */
+.identity-card dl,.view-project{font-family:Geist Mono,monospace}
+
+/* Long single words in page headings wrap instead of pushing the page sideways on phones. */
+.inner-page>h1{overflow-wrap:break-word}
+@media (width<=480px){.inner-page>h1{font-size:clamp(34px,10vw,52px)}}
+
+/* The menu label keeps clear of the wordmark on phones. */
+@media (width<=480px){.site-header{grid-template-columns:auto 1fr auto;column-gap:20px}}
+
+/* /contact: the footer heading is the page's h1, set exactly like the h2 it replaces. */
+.footer-content>h1{letter-spacing:-3px;text-transform:uppercase;margin:35px 0;font-size:64px;font-weight:400;line-height:.98}
+@media (width<=800px){.footer-content>h1{font-size:52px}}
+.community-contact .contact-email{margin-top:24px}

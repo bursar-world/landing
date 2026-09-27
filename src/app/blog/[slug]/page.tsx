@@ -12,12 +12,15 @@ export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-// Every note shares one set of head tags, as it did on the original site.
-export function generateMetadata(): Metadata {
+export async function generateMetadata({ params }: { readonly params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = posts.find((candidate) => candidate.slug === slug);
+  if (!post) return {};
   return pageMetadata({
-    title: 'Bursar protocol note',
-    description: 'A Bursar research note on agent spending mandates, RWA funding, privacy, and settlement.',
-    ogDescription: 'Research from the Bursar team on controlled agent spending.',
+    title: `${post.title.replace(/\.$/, '')} | Bursar`,
+    description: post.intro,
+    ogDescription: post.intro,
+    path: `/blog/${post.slug}`,
     type: 'article',
   });
 }

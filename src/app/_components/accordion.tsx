@@ -8,7 +8,7 @@ import { ChevronDown } from './icons';
 
 /**
  * A single-open, collapsible accordion carrying the attributes the Radix/shadcn accordion from the
- * Lovable build rendered, with the panel height animated by motion rather than by CSS keyframes.
+ * original build rendered, with the panel height animated by motion rather than by CSS keyframes.
  */
 
 type AccordionContextValue = {

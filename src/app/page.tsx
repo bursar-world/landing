@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 
 import {
   CONSOLE_HREF,
-  articleArt,
   capabilities,
   faq,
   lanes,
@@ -31,6 +30,7 @@ export const metadata: Metadata = pageMetadata({
   title: 'Bursar | Private budgets for AI agents',
   description: 'Private mandates, RWA-funded budgets, and on-chain spending controls for AI agents.',
   ogDescription: 'Give your agents a budget, not your bank. And keep the ledger private.',
+  path: '/',
 });
 
 export default function LandingPage() {
@@ -427,7 +427,7 @@ function LandingSections() {
           {posts.map((post, i) => (
             <a key={post.slug} href={'/blog/' + post.slug} className="article-card">
               <div className={'article-art article-art-' + i}>
-                <img src={articleArt[i]?.src} alt={articleArt[i]?.alt} />
+                <img src={post.art.src} alt={post.art.alt} />
                 <span>0{i + 1} / BURSAR</span>
               </div>
               <Eyebrow>{post.category}</Eyebrow>

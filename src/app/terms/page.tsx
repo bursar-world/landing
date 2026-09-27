@@ -9,6 +9,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     'Terms covering the Bursar workspace, protocol transactions, asset eligibility, and your responsibilities.',
   ogDescription: 'What saving a mandate does, and does not, do.',
+  path: '/terms',
 });
 
 export default function TermsPage() {

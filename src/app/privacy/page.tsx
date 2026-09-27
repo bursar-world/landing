@@ -8,6 +8,7 @@ export const metadata: Metadata = pageMetadata({
   title: 'Bursar privacy policy',
   description: 'How Bursar handles your encrypted workspace, your passphrase, wallet connections, and exports.',
   ogDescription: 'Workspace data is encrypted in your browser before it is stored.',
+  path: '/privacy',
 });
 
 export default function PrivacyPage() {

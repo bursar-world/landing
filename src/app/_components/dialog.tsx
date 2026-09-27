@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom';
 import { Close } from './icons';
 
 /**
- * A modal dialog with the markup, data attributes and behaviour of the shadcn dialog the Lovable
+ * A modal dialog with the markup, data attributes and behaviour of the shadcn dialog the original
  * build used (Radix underneath): portalled overlay and content, `data-state` driving the enter and
  * exit keyframes in site.css, focus trapped inside, Escape and outside presses close the topmost
  * dialog only, the page behind is inert to pointer, scroll and assistive technology while it is up.
@@ -32,13 +32,17 @@ function useDialog(): DialogContextValue {
 export function Dialog({
   open,
   onOpenChange,
+  id,
   children,
 }: {
   readonly open: boolean;
   readonly onOpenChange: (open: boolean) => void;
+  /** The content's id, for a trigger outside the dialog that names it with `aria-controls`. */
+  readonly id?: string;
   readonly children: ReactNode;
 }) {
-  const contentId = `radix-${useId()}`;
+  const generatedId = `radix-${useId()}`;
+  const contentId = id ?? generatedId;
   const titleId = `radix-${useId()}`;
   const descriptionId = `radix-${useId()}`;
   return (
@@ -163,9 +167,12 @@ function ModalLayer({
   }, [close, contentRef, layer]);
 
   // Focus lands on the first control that is not a link, and cannot leave while the dialog is open.
+  // On close it goes back to whatever opened the dialog, so a keyboard reader is not dropped at the
+  // top of the page.
   useEffect(() => {
     const content = contentRef.current;
     if (!content || !open) return;
+    const opener = document.activeElement instanceof HTMLElement && !content.contains(document.activeElement) ? document.activeElement : null;
     const first = tabbables(content).find((node) => node.tagName !== 'A');
     (first ?? content).focus({ preventScroll: true });
     const onFocusIn = (event: FocusEvent) => {
@@ -175,7 +182,10 @@ function ModalLayer({
       else (lastFocused.current ?? content).focus({ preventScroll: true });
     };
     document.addEventListener('focusin', onFocusIn);
-    return () => document.removeEventListener('focusin', onFocusIn);
+    return () => {
+      document.removeEventListener('focusin', onFocusIn);
+      if (opener?.isConnected) opener.focus({ preventScroll: true });
+    };
   }, [contentRef, layer, open]);
 
   const onKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -215,8 +225,7 @@ function ModalLayer({
   );
 }
 
-/* Layers ---------------------------------------------------------------------------------------- */
-
+/** Open dialogs, oldest first. Only the last one answers Escape and presses outside. */
 const layers: HTMLElement[] = [];
 const listeners = new Set<() => void>();
 let savedPointerEvents = '';
@@ -325,8 +334,6 @@ function hideOthers(keep: HTMLElement) {
   };
 }
 
-/* Presence -------------------------------------------------------------------------------------- */
-
 /**
  * Keep an element mounted after `present` turns false until its exit animation has run, the way
  * Radix Presence does, so `data-state="closed"` has time to play the keyframes.
@@ -363,8 +370,6 @@ function usePresence(present: boolean, ref: RefObject<HTMLElement | null>) {
 
   return present || mounted;
 }
-
-/* Helpers --------------------------------------------------------------------------------------- */
 
 function useLatest<T>(value: T) {
   const ref = useRef(value);

@@ -11,6 +11,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     'Bursar is the control layer for agent spending: budgets, RWA funding, and private mandates in one architecture.',
   ogDescription: 'Explicit authority for every delegated task, with a private ledger by design.',
+  path: '/about',
 });
 
 export default function AboutPage() {
@@ -26,7 +27,7 @@ export default function AboutPage() {
           <br />
           Your limits.
         </h1>
-        {/* eslint-disable-next-line @next/next/no-img-element -- matches the Lovable markup and CSS */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- matches the original markup and CSS */}
         <img className="detail-hero" src="/brand/banner.png" alt="Bursar private budgets for AI agents" />
         <article className="prose">
           <h2>The control layer for agent spending.</h2>

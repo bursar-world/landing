@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { SiteMotion } from './_components/site-motion';
 import './site.css';
-import './links.css';
+import './site-extra.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bursar.world'),

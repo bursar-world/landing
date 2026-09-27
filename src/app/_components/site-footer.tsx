@@ -5,11 +5,15 @@ import { ArrowUpRight } from './icons';
 import { Socials } from './socials';
 import { SplitWords } from './split-words';
 
-export function SiteFooter() {
+/**
+ * On /contact the footer is the page, so there its heading is the page's h1 and it lists the
+ * email address beside the community channels.
+ */
+export function SiteFooter({ contact = false }: { readonly contact?: boolean }) {
   return (
     <footer id="contact" className="site-footer">
       <div className="footer-profile">
-        {/* eslint-disable-next-line @next/next/no-img-element -- matches the Lovable markup and CSS */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- matches the original markup and CSS */}
         <img src="/brand/logo.png" alt="Bursar" />
         <Action>
           Open dashboard <small>/Bursar</small>
@@ -30,16 +34,23 @@ export function SiteFooter() {
       </div>
       <div className="footer-content">
         <Eyebrow>Contact</Eyebrow>
-        <SplitWords>
+        <SplitWords as={contact ? 'h1' : 'h2'}>
           Give autonomy
           <br />a boundary.
         </SplitWords>
         <div className="community-contact">
           <SplitWords as="p">
-            Have a question? Follow Bursar on X and Telegram for updates, conversations, and a direct line to our
-            community.
+            Have a question? Follow Bursar on X for updates and conversations, and find the code on GitHub.
           </SplitWords>
-          <Socials channels={['X', 'GitHub', 'Telegram']} showLabels />
+          <Socials showLabels />
+          {contact && (
+            <a className="text-link contact-email" href="mailto:hello@bursar.world">
+              Email hello@bursar.world{' '}
+              <span>
+                <ArrowUpRight size={18} />
+              </span>
+            </a>
+          )}
         </div>
         <div className="footer-links">
           <nav>
