@@ -1,0 +1,60 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { menuLinks } from '../_content';
+import { Action } from './action';
+import { ArrowUpRight } from './icons';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from './dialog';
+import { Socials } from './socials';
+
+/**
+ * The site header: menu toggle, wordmark, the visitor's local time and the app button. The clock
+ * renders empty on the server and fills in after hydration, since the server has no idea where
+ * the visitor is; it refreshes once a minute because it only shows hours and minutes.
+ */
+export function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const tick = () => setTime(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }));
+    tick();
+    const timer = setInterval(tick, 60_000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <>
+      <header className="site-header">
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <span>⠿</span>
+          {menuOpen ? 'Close' : 'Menu'}
+        </button>
+        <a className="small-wordmark" href="/">
+          BURSAR®
+        </a>
+        <span className="local-time">
+          {time} <em>LOCAL TIME</em>
+        </span>
+        <Action>
+          Launch app <small>/Bursar</small>
+        </Action>
+      </header>
+      <Dialog open={menuOpen} onOpenChange={setMenuOpen}>
+        <DialogContent className="nav-modal">
+          <DialogTitle className="eyebrow">Explore Bursar</DialogTitle>
+          <DialogDescription className="sr-only">Website navigation</DialogDescription>
+          {menuLinks.map(([label, href], i) => (
+            <a key={label} href={href} onClick={() => setMenuOpen(false)}>
+              <small>0{i + 1}</small>
+              {label}
+              <ArrowUpRight />
+            </a>
+          ))}
+          <Socials />
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
