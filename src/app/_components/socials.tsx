@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 
-import { X_URL } from '../_content';
+import { GITHUB_URL, X_URL } from '../_content';
 import { ChevronRight, Send } from './icons';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from './dialog';
 
 type Channel = 'X' | 'GitHub' | 'Telegram';
 
 /** Where a live channel goes. A channel without one opens a short "coming soon" dialog instead. */
-const LINKS: Partial<Record<Channel, string>> = { X: X_URL };
+const LINKS: Partial<Record<Channel, string>> = { X: X_URL, GitHub: GITHUB_URL };
 
 /** Community channel buttons. */
 export function Socials({

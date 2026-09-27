@@ -7,6 +7,7 @@
 export const CONSOLE_HREF = `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.bursar.world'}/console`;
 
 export const X_URL = 'https://x.com/UseBursar';
+export const GITHUB_URL = 'https://github.com/bursar-world';
 
 export type Capability = {
   readonly slug: string;

@@ -2,6 +2,15 @@
   "name": "bursar-landing",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://bursar.world",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bursar-world/landing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bursar-world/landing/issues"
+  },
   "type": "module",
   "scripts": {
     "dev": "next dev --port ${PORT:-4320}",

@@ -39,7 +39,7 @@ export function SiteFooter() {
             Have a question? Follow Bursar on X and Telegram for updates, conversations, and a direct line to our
             community.
           </SplitWords>
-          <Socials channels={['X', 'Telegram']} showLabels />
+          <Socials channels={['X', 'GitHub', 'Telegram']} showLabels />
         </div>
         <div className="footer-links">
           <nav>

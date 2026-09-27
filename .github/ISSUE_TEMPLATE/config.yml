@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Protocol, console and SDK issues
+    url: https://github.com/bursar-world/bursar/issues
+    about: Anything beyond the website itself belongs in the main repository.
+  - name: Report a vulnerability
+    url: https://github.com/bursar-world/bursar/security/policy
+    about: Privately, never in a public issue.
