@@ -21,3 +21,6 @@
 
 /* Responsive images are wrapped in <picture>; the wrapper takes no box of its own. */
 picture{display:contents}
+
+/* The header button's logo, from the generated set (scripts/images.mjs) instead of the 1.2 MB source. */
+.site-header>.action:before{background-image:image-set(url(/img/brand-logo-192.b5c33d5218.avif) type("image/avif"),url(/img/brand-logo-192.7bb7007650.webp) type("image/webp"),url(/img/brand-logo-192.2c4ea7d4a7.jpg) type("image/jpeg"))}
