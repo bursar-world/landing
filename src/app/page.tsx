@@ -1,8 +1,10 @@
-/* eslint-disable @next/next/no-img-element -- plain images keep the markup the site stylesheet targets */
 import type { Metadata } from 'next';
 
 import {
   CONSOLE_HREF,
+  CREATE_HREF,
+  WORKSPACE_HREF,
+  laneHref,
   capabilities,
   faq,
   lanes,
@@ -20,15 +22,18 @@ import { CountUp } from './_components/count-up';
 import { Eyebrow } from './_components/eyebrow';
 import { ArrowUpRight, ShieldCheck } from './_components/icons';
 import { pageMetadata } from './_components/metadata';
+import { Picture } from './_components/picture';
 import { SectionHeading } from './_components/section-heading';
 import { SiteFooter } from './_components/site-footer';
 import { SiteHeader } from './_components/site-header';
 import { Socials } from './_components/socials';
 import { SplitWords } from './_components/split-words';
+import { StructuredData, faqPage } from './_components/structured-data';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Bursar | Private budgets for AI agents',
-  description: 'Private mandates, RWA-funded budgets, and on-chain spending controls for AI agents.',
+  description:
+    'Bursar sets private spending mandates for AI agents: a budget, period caps, allowed counterparties, and expiry, funded with USDG or treasury tokens.',
   ogDescription: 'Give your agents a budget, not your bank. And keep the ledger private.',
   path: '/',
 });
@@ -37,7 +42,13 @@ export default function LandingPage() {
   return (
     <main id="top">
       <section className="hero">
-        <img className="hero-stock" src="/stock/glass.jpg" alt="Flowing translucent glass in peach and pale blue" />
+        <Picture
+          image="stock/glass"
+          className="hero-stock"
+          alt="Flowing translucent glass in peach and pale blue"
+          sizes="108vw"
+          priority
+        />
         <div className="hero-tint" />
         <SiteHeader />
         <div className="hero-copy">
@@ -62,7 +73,7 @@ export default function LandingPage() {
         </div>
         <div className="hero-bottom">
           <div className="hero-status">
-            <img src="/brand/logo.png" alt="Bursar symbol" />
+            <Picture image="brand/logo" alt="Bursar symbol" sizes="44px" eager />
             <div>
               PRIVATE BY DESIGN
               <div className="tiny">YOUR AGENTS. YOUR LIMITS.</div>
@@ -90,7 +101,11 @@ export default function LandingPage() {
       <section id="mission" className="mission section-grid">
         <aside>
           <div className="identity-card">
-            <img src="/brand/logo.png" alt="Bursar deep plum logo on peach and pale blue" />
+            <Picture
+              image="brand/logo"
+              alt="Bursar deep plum logo on peach and pale blue"
+              sizes="(max-width: 800px) 92vw, 24vw"
+            />
             <Action>
               Take control <small>/Bursar</small>
             </Action>
@@ -131,6 +146,7 @@ export default function LandingPage() {
         </div>
       </section>
       <LandingSections />
+      <StructuredData graph={[faqPage(faq)]} />
     </main>
   );
 }
@@ -165,10 +181,10 @@ function LandingSections() {
                 </div>
               </div>
               <div className={'capability-visual visual-' + i}>
-                <img src={capability.image} alt={capability.landingAlt} />
+                <Picture image={capability.image} alt={capability.landingAlt} sizes="102vw" />
                 <div className="capability-shade" />
                 <div className="capability-inset">
-                  <img src={capability.image} alt="" />
+                  <Picture image={capability.image} alt="" sizes="(max-width: 800px) 48vw, 24vw" />
                 </div>
                 <h3 className="capability-wordmark">{capability.name}</h3>
               </div>
@@ -201,7 +217,7 @@ function LandingSections() {
                 inside a mandate.
               </h3>
               <div>
-                <img src="/brand/logo.png" alt="Bursar" />
+                <Picture image="brand/logo" alt="Bursar" sizes="100px" />
                 <a href={CONSOLE_HREF} className="text-link">
                   Open app{' '}
                   <span>
@@ -222,7 +238,7 @@ function LandingSections() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p>{copy}</p>
-                  <a className="text-link" href={CONSOLE_HREF}>
+                  <a className="text-link" href={CREATE_HREF}>
                     Configure a mandate <ArrowUpRight size={16} />
                   </a>
                 </AccordionContent>
@@ -263,7 +279,7 @@ function LandingSections() {
               <span>02 / Explicit controls</span>
               <span>03 / Clear oversight</span>
             </div>
-            <Action>Create a mandate</Action>
+            <Action href={CREATE_HREF}>Create a mandate</Action>
           </article>
         </div>
       </section>
@@ -276,7 +292,7 @@ function LandingSections() {
         />
         <div className="roles-layout">
           <div className="role-intro">
-            <img src="/brand/logo.png" alt="Bursar" />
+            <Picture image="brand/logo" alt="Bursar" sizes="140px" />
             <p>
               Autonomy for agents.
               <br />
@@ -287,7 +303,7 @@ function LandingSections() {
               Participate in the trust layer. The protocol design routes facilitator, collateral-lane, and dispute fees
               toward buybacks and stakers.
             </p>
-            <Action>Enter the workspace</Action>
+            <Action href={WORKSPACE_HREF}>Enter the workspace</Action>
           </div>
           <div className="role-cards">
             {roles.map(([label, title, copy]) => (
@@ -334,7 +350,11 @@ function LandingSections() {
           </a>
         </div>
         <div className="featured-media">
-          <img src="/stock/hero.jpg" alt="Translucent glass forms in pink and pale blue" />
+          <Picture
+            image="stock/hero"
+            alt="Translucent glass forms in pink and pale blue"
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
         </div>
       </section>
       <section id="lanes" className="lanes">
@@ -362,8 +382,7 @@ function LandingSections() {
                   <li key={control}>＋ {control}</li>
                 ))}
               </ul>
-              {/* The console has no lane preselection, so every lane opens it plainly. */}
-              <Action href={CONSOLE_HREF}>Choose {lane.name}</Action>
+              <Action href={laneHref(lane.name)}>Choose {lane.name}</Action>
               <div className="lane-foot">
                 Terms follow your mandate <ArrowUpRight size={15} />
               </div>
@@ -373,7 +392,7 @@ function LandingSections() {
       </section>
       <section id="faq" className="faq section-grid">
         <aside>
-          <img src="/brand/logo.png" alt="Bursar" />
+          <Picture image="brand/logo" alt="Bursar" sizes="95px" />
           <Eyebrow>Need some clarity?</Eyebrow>
           <h3>
             Start with
@@ -427,7 +446,7 @@ function LandingSections() {
           {posts.map((post, i) => (
             <a key={post.slug} href={'/blog/' + post.slug} className="article-card">
               <div className={'article-art article-art-' + i}>
-                <img src={post.art.src} alt={post.art.alt} />
+                <Picture image={post.art.image} alt={post.art.alt} sizes="(max-width: 800px) 96vw, 25vw" />
                 <span>0{i + 1} / BURSAR</span>
               </div>
               <Eyebrow>{post.category}</Eyebrow>

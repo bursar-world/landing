@@ -4,7 +4,10 @@ import { Action } from './_components/action';
 import { Eyebrow } from './_components/eyebrow';
 import { SiteHeader } from './_components/site-header';
 
-export const metadata: Metadata = { title: 'Page not found | Bursar' };
+export const metadata: Metadata = {
+  title: 'Page not found | Bursar',
+  description: 'This address has no page on bursar.world. Return to the Bursar home page.',
+};
 
 export default function SiteNotFound() {
   return (

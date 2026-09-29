@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { posts } from '../../_content';
+import { WORKSPACE_HREF, posts } from '../../_content';
 import { Action } from '../../_components/action';
 import { Eyebrow } from '../../_components/eyebrow';
 import { pageMetadata } from '../../_components/metadata';
 import { SiteFooter } from '../../_components/site-footer';
 import { SiteHeader } from '../../_components/site-header';
+import { StructuredData, blogPosting, breadcrumbs } from '../../_components/structured-data';
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
@@ -18,10 +19,10 @@ export async function generateMetadata({ params }: { readonly params: Promise<{ 
   if (!post) return {};
   return pageMetadata({
     title: `${post.title.replace(/\.$/, '')} | Bursar`,
-    description: post.intro,
+    description: post.description,
     ogDescription: post.intro,
     path: `/blog/${post.slug}`,
-    type: 'article',
+    article: { published: post.published, modified: post.modified, section: post.category },
   });
 }
 
@@ -45,8 +46,24 @@ export default async function PostPage({ params }: { readonly params: Promise<{ 
           {post.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
-          <Action>Open your workspace</Action>
+          <Action href={WORKSPACE_HREF}>Open your workspace</Action>
         </article>
+        <StructuredData
+          graph={[
+            blogPosting({
+              path: `/blog/${post.slug}`,
+              headline: post.title,
+              description: post.description,
+              section: post.category,
+              published: post.published,
+              modified: post.modified,
+            }),
+            breadcrumbs([
+              ['Resources', '/blog'],
+              [post.title, `/blog/${post.slug}`],
+            ]),
+          ]}
+        />
       </main>
       <SiteFooter />
     </>

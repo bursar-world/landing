@@ -1,6 +1,7 @@
 import { CONSOLE_HREF, footerLinks } from '../_content';
 import { Action } from './action';
 import { Eyebrow } from './eyebrow';
+import { Picture } from './picture';
 import { ArrowUpRight } from './icons';
 import { Socials } from './socials';
 import { SplitWords } from './split-words';
@@ -13,8 +14,8 @@ export function SiteFooter({ contact = false }: { readonly contact?: boolean }) 
   return (
     <footer id="contact" className="site-footer">
       <div className="footer-profile">
-        {/* eslint-disable-next-line @next/next/no-img-element -- matches the original markup and CSS */}
-        <img src="/brand/logo.png" alt="Bursar" />
+        {/* On /contact the footer is the first screen, and this image its largest element. */}
+        <Picture image="brand/logo" alt="Bursar" sizes="27vw" priority={contact} />
         <Action>
           Open dashboard <small>/Bursar</small>
         </Action>

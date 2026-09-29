@@ -3,8 +3,10 @@ import type { Metadata } from 'next';
 import { Action } from '../_components/action';
 import { Eyebrow } from '../_components/eyebrow';
 import { pageMetadata } from '../_components/metadata';
+import { Picture } from '../_components/picture';
 import { SiteFooter } from '../_components/site-footer';
 import { SiteHeader } from '../_components/site-header';
+import { StructuredData, breadcrumbs } from '../_components/structured-data';
 
 export const metadata: Metadata = pageMetadata({
   title: 'About Bursar | Your agents. Your limits.',
@@ -27,8 +29,13 @@ export default function AboutPage() {
           <br />
           Your limits.
         </h1>
-        {/* eslint-disable-next-line @next/next/no-img-element -- matches the original markup and CSS */}
-        <img className="detail-hero" src="/brand/banner.png" alt="Bursar private budgets for AI agents" />
+        <Picture
+          image="brand/banner"
+          className="detail-hero"
+          alt="Bursar private budgets for AI agents"
+          sizes="(max-width: 800px) calc(100vw - 48px), calc(100vw - 96px)"
+          priority
+        />
         <article className="prose">
           <h2>The control layer for agent spending.</h2>
           <p>
@@ -48,6 +55,7 @@ export default function AboutPage() {
           </p>
           <Action>Open dashboard</Action>
         </article>
+        <StructuredData graph={[breadcrumbs([['About', '/about']])]} />
       </main>
       <SiteFooter />
     </>

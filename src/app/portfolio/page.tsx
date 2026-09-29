@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { capabilities } from '../_content';
 import { Eyebrow } from '../_components/eyebrow';
 import { pageMetadata } from '../_components/metadata';
+import { Picture } from '../_components/picture';
 import { SiteFooter } from '../_components/site-footer';
 import { SiteHeader } from '../_components/site-header';
 
@@ -30,10 +31,15 @@ export default function PortfolioPage() {
         <div className="article-grid">
           {capabilities.map((capability) => (
             <a key={capability.slug} className="article-card" href={'/portfolio/' + capability.slug}>
-              {/* eslint-disable-next-line @next/next/no-img-element -- matches the original markup and CSS */}
-              <img className="article-art" src={capability.image} alt={capability.name} />
+              <Picture
+                image={capability.image}
+                className="article-art"
+                alt={capability.name}
+                sizes="(max-width: 800px) 96vw, 25vw"
+                ratioOnly
+              />
               <Eyebrow>{capability.category}</Eyebrow>
-              <h3>{capability.title}</h3>
+              <h2>{capability.title}</h2>
               <p>{capability.summary}</p>
               <span className="text-link">Explore →</span>
             </a>

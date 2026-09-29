@@ -3,8 +3,17 @@
  * The copy is carried over verbatim from the original build; edits belong in a separate pass.
  */
 
+import type { ImageKey } from './_images';
+
 /** The console runs as its own service; every link from the site to it is a full load to that origin. */
 export const CONSOLE_HREF = `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.bursar.world'}/console`;
+export const CREATE_HREF = `${CONSOLE_HREF}/new`;
+export const WORKSPACE_HREF = `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.bursar.world'}/workspace`;
+
+/** The create screen with a funding lane already chosen. */
+export function laneHref(lane: string): string {
+  return `${CREATE_HREF}?lane=${lane.toLowerCase()}`;
+}
 
 export const X_URL = 'https://x.com/UseBursar';
 export const GITHUB_URL = 'https://github.com/bursar-world';
@@ -15,9 +24,11 @@ export type Capability = {
   readonly category: string;
   readonly title: string;
   readonly summary: string;
+  /** The search result snippet; not shown on the page. */
+  readonly description: string;
   readonly body: string;
   readonly points: readonly string[];
-  readonly image: string;
+  readonly image: ImageKey;
   /** The landing page describes the photograph rather than naming the layer. */
   readonly landingAlt: string;
 };
@@ -29,13 +40,15 @@ export const capabilities: readonly Capability[] = [
     category: 'Control layer',
     title: 'A budget with boundaries.',
     summary: 'Set the amount, the period, and exactly what your agent can do.',
+    description:
+      'Set the amount, the period, and exactly what your agent can do. A Bursar mandate defines the budget, period cap, spend classes, counterparties, and expiry.',
     body: 'A mandate defines a total budget, a per-period spending cap, allowed spend classes, counterparties, expiry, and a funding lane. The principal can amend or revoke the mandate. The protocol design commits the terms on-chain while retaining the readable terms in the principal’s viewing-key space.',
     points: [
       'Total and per-period budgets',
       'Spend-class and counterparty rules',
       'Expiry, amendment, and revocation',
     ],
-    image: '/stock/control.jpg',
+    image: 'stock/control',
     landingAlt: 'Minimalist stairs inside a structured concrete interior',
   },
   {
@@ -44,13 +57,15 @@ export const capabilities: readonly Capability[] = [
     category: 'Capital layer',
     title: 'Put idle budgets to work.',
     summary: 'Treasury-funded budgets, eligible stock purchases, and collateral lanes.',
+    description:
+      'Fund agent budgets with USDG or treasury tokens. Idle balances track treasury NAV, and stock purchases and collateral follow registry and price rules.',
     body: 'Bursar’s RWA architecture connects treasury-token funding to agent spending. Idle budgets track treasury NAV rather than a projected return. Eligible stock purchases use a Chainlink reference with the asset’s multiplier and a slippage limit. Collateralized mandates use registry-defined assets and haircut tiers; stale or paused prices defer execution.',
     points: [
       'USDG or treasury-token funding',
       'Registry-gated stock purchases',
       'Published collateral haircut tiers',
     ],
-    image: '/stock/treasury.jpg',
+    image: 'stock/treasury',
     landingAlt: 'A rhythmic colonnade representing treasury infrastructure',
   },
   {
@@ -59,13 +74,15 @@ export const capabilities: readonly Capability[] = [
     category: 'Privacy layer',
     title: 'Proof, without exposure.',
     summary: 'Verify the rules without revealing the principal or the full ledger.',
+    description:
+      'Check that an agent spend follows its mandate without revealing the principal or full ledger, using commitments, stealth wallets, and zero-knowledge proofs.',
     body: 'The privacy design combines stealth agent wallets, confidential counters, mandate commitments, and zero-knowledge proofs. A provider verifies that a spend is within the mandate without reading its full terms. Scoped disclosure grants allow bonded resolvers to inspect only the relevant slice of a dispute.',
     points: [
       'Within-mandate verification',
       'Selective dispute disclosure',
       'Public epoch solvency proofs',
     ],
-    image: '/stock/privacy.jpg',
+    image: 'stock/privacy',
     landingAlt: 'Reflective glass architecture against a pastel sky',
   },
 ];
@@ -75,9 +92,13 @@ export type Post = {
   readonly title: string;
   readonly category: string;
   readonly intro: string;
+  /** The search result snippet; not shown on the page. */
+  readonly description: string;
+  readonly published: string;
+  readonly modified: string;
   readonly body: readonly string[];
   /** Carried by the post itself, so a new post cannot reach a card without an image of its own. */
-  readonly art: { readonly src: string; readonly alt: string };
+  readonly art: { readonly image: ImageKey; readonly alt: string };
 };
 
 export const posts: readonly Post[] = [
@@ -86,48 +107,64 @@ export const posts: readonly Post[] = [
     title: 'A wallet is not a budget.',
     category: 'Mandates',
     intro: 'Why autonomous agents need explicit spending rules.',
+    description:
+      'Why autonomous agents need explicit spending rules, and how a Bursar mandate sets the budget, period cap, counterparties, and expiry of delegated authority.',
+    published: '2026-09-27',
+    modified: '2026-09-27',
     body: [
       'An agent wallet answers where funds live. It does not answer how much an agent may spend, which counterparties it may pay, or when its authority ends. Bursar organizes those decisions into a mandate.',
       'The mandate records a total budget and a period cap, plus spend classes, allowed counterparties, expiry, and the funding lane. Those controls make the scope of delegated authority explicit.',
       'Start with a narrow mandate. Choose the services your agent needs, specify the counterparties, and set an expiry. Amend the mandate as the task changes instead of handing the agent an unrestricted balance.',
     ],
-    art: { src: '/stock/control.jpg', alt: 'Structured concrete stairs' },
+    art: { image: 'stock/control', alt: 'Structured concrete stairs' },
   },
   {
     slug: 'treasuries-inside-the-mandate',
     title: 'Treasuries inside the mandate.',
     category: 'RWA architecture',
     intro: 'How treasury NAV fits into an agent’s spending budget.',
+    description:
+      'How treasury NAV fits into an agent’s spending budget: treasury-token funding next to USDG, NAV-based accounting, and the registry and price guards.',
+    published: '2026-09-27',
+    modified: '2026-09-27',
     body: [
       'The Bursar design supports treasury-token budgets alongside USDG. Treasury notes represent the parked value of an unspent budget; settlement draws on that value when an approved spend occurs.',
       'Accounting uses an asset’s NAV and applicable multiplier. A projected yield is not a balance, and a stale NAV must not silently create new spending power.',
       'Stock tokens and treasury tokens remain subject to eligibility and jurisdiction requirements. The registry and price guards are part of the spending boundary.',
     ],
-    art: { src: '/stock/columns.jpg', alt: 'Treasury-inspired classical columns' },
+    art: { image: 'stock/columns', alt: 'Treasury-inspired classical columns' },
   },
   {
     slug: 'privacy-with-accountability',
     title: 'Private does not mean unaccountable.',
     category: 'Privacy',
     intro: 'Selective disclosure and solvency are part of the design.',
+    description:
+      'How Bursar keeps agent spending private and accountable: stealth wallets, within-mandate proofs, scoped dispute disclosure, and public solvency proofs.',
+    published: '2026-09-27',
+    modified: '2026-09-27',
     body: [
       'Private spending should not require a public record of every principal-agent relationship. Stealth wallets and committed mandate terms are designed to reduce that exposure.',
       'Counterparties need evidence that the rules are satisfied. A within-mandate proof can establish that a spend respects a cap, class, and counterparty rule without disclosing the complete mandate.',
       'Dispute resolution uses scoped disclosure grants. Public epoch solvency proofs provide a separate accountability surface without publishing every private transaction.',
     ],
-    art: { src: '/stock/privacy.jpg', alt: 'Reflective glass façade' },
+    art: { image: 'stock/privacy', alt: 'Reflective glass façade' },
   },
   {
     slug: 'verify-hold-settle-repay',
     title: 'Verify. Hold. Settle. Repay.',
     category: 'Infrastructure',
     intro: 'The four stages of controlled agent spending.',
+    description:
+      'The four stages of controlled agent spending in Bursar: verify the mandate, hold the budget, settle the payment, and repay the collateralized lane.',
+    published: '2026-09-27',
+    modified: '2026-09-27',
     body: [
       'The facilitator first checks the mandate and requested spend. A valid request reserves a hold so concurrent requests cannot reuse the same available budget.',
       'Settlement records the receipt and completes the approved payment path. Agent hires use escrow, while eligible stock purchases pass through the settlement router and its price checks.',
       'Repayment applies to the collateralized lane. It is separate from prefunded spending, and its debt and collateral health must remain explicit.',
     ],
-    art: { src: '/stock/structure.jpg', alt: 'Modern infrastructure' },
+    art: { image: 'stock/structure', alt: 'Modern infrastructure' },
   },
 ];
 
