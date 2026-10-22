@@ -8,10 +8,10 @@ import { SiteFooter } from '../_components/site-footer';
 import { SiteHeader } from '../_components/site-header';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Bursar capabilities | Control by design',
+  title: 'Bursar capabilities | Funded by design',
   description:
-    'Mandate controls, RWA funding, and confidential settlement: the capabilities behind Bursar agent budgets.',
-  ogDescription: 'Explore the control, capital, and privacy layers of the Bursar protocol.',
+    'Agent endowments, mandates and confidential settlement: how Bursar funds AI agents and sets what they may spend.',
+  ogDescription: 'Where an agent’s money comes from, what it may spend, and who gets to see.',
   path: '/portfolio',
 });
 

@@ -10,8 +10,8 @@ import { SiteHeader } from '../_components/site-header';
 export const metadata: Metadata = pageMetadata({
   title: 'Bursar resources | Protocol notes',
   description:
-    'Protocol notes from Bursar on agent mandates, treasury-funded budgets, privacy with accountability, and controlled settlement.',
-  ogDescription: 'A closer look at the rules, funding paths, and privacy behind Bursar.',
+    'Protocol notes from Bursar on agent endowments, mandates, privacy and settlement.',
+  ogDescription: 'A closer look at endowments, mandates and the privacy behind Bursar.',
   path: '/blog',
 });
 

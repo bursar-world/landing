@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 
 import {
-  CONSOLE_HREF,
-  CREATE_HREF,
-  WORKSPACE_HREF,
-  laneHref,
+  ENDOWMENTS_HREF,
+  ENDOW_HREF,
+  TOKEN_HREF,
   capabilities,
   faq,
   lanes,
@@ -31,10 +30,10 @@ import { SplitWords } from './_components/split-words';
 import { StructuredData, faqPage } from './_components/structured-data';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Bursar | Private budgets for AI agents',
+  title: 'Bursar | Endowments for AI agents',
   description:
-    'Bursar sets private spending mandates for AI agents: a budget, period caps, allowed counterparties, and expiry, funded with USDG or treasury tokens.',
-  ogDescription: 'Give your agents a budget, not your bank. And keep the ledger private.',
+    'Fund an AI agent once. The principal stays invested in US stocks on Robinhood Chain, the agent spends a yearly draw inside limits its owner sets, and anyone can add to it.',
+  ogDescription: 'Endow an AI agent. The principal stays invested, and anyone can add to it.',
   path: '/',
 });
 
@@ -53,21 +52,21 @@ export default function LandingPage() {
         <SiteHeader />
         <div className="hero-copy">
           <p>
-            Give your agents a budget,
+            Fund an AI agent once.
             <br />
-            not your bank.
+            The principal stays invested.
             <br />
-            <span>And keep the ledger private.</span>
+            <span>The agent spends the draw.</span>
           </p>
           <div>
             <p>
-              <small>/01</small> Private mandates
+              <small>/01</small> Endowments in US stocks
             </p>
             <p>
-              <small>/02</small> RWA-funded budgets
+              <small>/02</small> Open to every patron
             </p>
             <p>
-              <small>/03</small> On-chain control
+              <small>/03</small> Spent inside a mandate
             </p>
           </div>
         </div>
@@ -75,8 +74,8 @@ export default function LandingPage() {
           <div className="hero-status">
             <Picture image="brand/logo" alt="Bursar symbol" sizes="44px" eager />
             <div>
-              PRIVATE BY DESIGN
-              <div className="tiny">YOUR AGENTS. YOUR LIMITS.</div>
+              ENDOWMENTS FOR AI AGENTS
+              <div className="tiny">LIVE ON ROBINHOOD CHAIN</div>
             </div>
           </div>
           <h1>
@@ -106,8 +105,8 @@ export default function LandingPage() {
               alt="Bursar deep plum logo on peach and pale blue"
               sizes="(max-width: 800px) 92vw, 24vw"
             />
-            <Action>
-              Take control <small>/Bursar</small>
+            <Action href={ENDOW_HREF}>
+              Endow an agent <small>/Bursar</small>
             </Action>
             <div className="identity-title">
               <Eyebrow>Bursar</Eyebrow>
@@ -116,7 +115,7 @@ export default function LandingPage() {
             <dl>
               <div>
                 <dt>Purpose</dt>
-                <dd>Private agent budgets</dd>
+                <dd>Agent endowments</dd>
               </div>
               <div>
                 <dt>Network</dt>
@@ -131,8 +130,8 @@ export default function LandingPage() {
             <span className="eyebrow">©2026 BURSAR</span>
           </div>
           <SplitWords scroll className="mission-statement">
-            Agents already spend your money. Bursar decides how much, on what, with whom, and keeps it between you and
-            the code.
+            Agents can pay their own bills now, and someone still has to top them up. Bursar gives an agent an
+            endowment instead: a principal that stays invested and pays it a yearly draw.
           </SplitWords>
           <div className="metric-grid">
             {metrics.map(([value, title, copy]) => (
@@ -158,8 +157,8 @@ function LandingSections() {
         <SectionHeading
           n="02"
           label="Capabilities"
-          title={'Control.\nBy design.'}
-          copy="A complete control layer for what your agents spend, where they spend it, and who gets to see."
+          title={'Funded.\nBy design.'}
+          copy="Where an agent's money comes from, what it may spend, and who gets to see."
           href="/portfolio"
           link="All capabilities"
         />
@@ -207,19 +206,19 @@ function LandingSections() {
             <SplitWords>
               What you
               <br />
-              control.
+              set.
             </SplitWords>
             <div className="service-cta">
-              <Eyebrow>Your workspace</Eyebrow>
+              <Eyebrow>Endowments</Eyebrow>
               <h3>
-                Put every agent
+                Fund an agent
                 <br />
-                inside a mandate.
+                once.
               </h3>
               <div>
                 <Picture image="brand/logo" alt="Bursar" sizes="100px" />
-                <a href={CONSOLE_HREF} className="text-link">
-                  Open app{' '}
+                <a href={ENDOWMENTS_HREF} className="text-link">
+                  See the endowments{' '}
                   <span>
                     <ArrowUpRight size={18} />
                   </span>
@@ -238,8 +237,8 @@ function LandingSections() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p>{copy}</p>
-                  <a className="text-link" href={CREATE_HREF}>
-                    Configure a mandate <ArrowUpRight size={16} />
+                  <a className="text-link" href={ENDOW_HREF}>
+                    Endow an agent <ArrowUpRight size={16} />
                   </a>
                 </AccordionContent>
               </AccordionItem>
@@ -251,8 +250,8 @@ function LandingSections() {
         <SectionHeading
           n="04"
           label="The process"
-          title={'5 steps.\nYour rules.'}
-          copy="From the first mandate to the final receipt, every step has a defined boundary."
+          title={'5 steps.\nOne endowment.'}
+          copy="From choosing the agent to its first draw."
         />
         <div className="process-grid">
           {processSteps.map(([label, title, copy], i) => (
@@ -273,13 +272,13 @@ function LandingSections() {
               <br />
               to start?
             </h3>
-            <p>Build your first mandate and define the limits before your agent takes the next step.</p>
+            <p>Endow an agent in a few minutes. A gift of a dollar or more earns a patron mark.</p>
             <div className="start-features">
-              <span>01 / Private workspace</span>
-              <span>02 / Explicit controls</span>
-              <span>03 / Clear oversight</span>
+              <span>01 / Any registered agent</span>
+              <span>02 / Principal in US stocks</span>
+              <span>03 / Open to patrons</span>
             </div>
-            <Action href={CREATE_HREF}>Create a mandate</Action>
+            <Action href={ENDOW_HREF}>Endow an agent</Action>
           </article>
         </div>
       </section>
@@ -294,16 +293,15 @@ function LandingSections() {
           <div className="role-intro">
             <Picture image="brand/logo" alt="Bursar" sizes="140px" />
             <p>
-              Autonomy for agents.
+              Funding for agents.
               <br />
-              Authority for you.
+              Limits from their owners.
             </p>
-            <Eyebrow>$BRSR stakers</Eyebrow>
+            <Eyebrow>$BRSR</Eyebrow>
             <p className="staker-copy">
-              Participate in the trust layer. The protocol design routes facilitator, collateral-lane, and dispute fees
-              toward buybacks and stakers.
+              Resolvers bond BRSR to rule on disputes, and stakers put it behind collateral-backed credit.
             </p>
-            <Action href={WORKSPACE_HREF}>Enter the workspace</Action>
+            <Action href={TOKEN_HREF}>See the token</Action>
           </div>
           <div className="role-cards">
             {roles.map(([label, title, copy]) => (
@@ -329,21 +327,21 @@ function LandingSections() {
       <section className="featured tint-section">
         <div>
           <Eyebrow n="06">The principle</Eyebrow>
-          <SplitWords scroll>“Give your agents a budget, not your bank, and nobody sees the ledger.”</SplitWords>
+          <SplitWords scroll>“Fund the agents you rely on once, and let anyone add to them.”</SplitWords>
           <div className="featured-facts">
             <div>
-              <strong>Scoped</strong>
-              <span>Spending authority</span>
-              <p>The agent receives a bounded mandate for a defined task.</p>
+              <strong>Invested</strong>
+              <span>The principal</span>
+              <p>Held in listed US stocks at the Chainlink price. Only the draw is spent.</p>
             </div>
             <div>
-              <strong>Private</strong>
-              <span>By architecture</span>
-              <p>Readable terms belong in the principal’s viewing-key space.</p>
+              <strong>Open</strong>
+              <span>To every patron</span>
+              <p>Gifts join the principal. A private gift can go through the shielded pool.</p>
             </div>
           </div>
-          <a className="text-link" href="/portfolio/private-mandates">
-            Explore mandates{' '}
+          <a className="text-link" href="/portfolio/rwa-funding">
+            Explore endowments{' '}
             <span>
               <ArrowUpRight size={18} />
             </span>
@@ -361,11 +359,11 @@ function LandingSections() {
         <div className="center-heading">
           <Eyebrow n="07">Funding paths</Eyebrow>
           <SplitWords>
-            Your budget.
+            Your agent.
             <br />
-            Your lane.
+            Your terms.
           </SplitWords>
-          <SplitWords as="p">Choose the funding structure that fits the mandate.</SplitWords>
+          <SplitWords as="p">Endow an agent that should keep running, or fund a single task.</SplitWords>
         </div>
         <div className="lane-grid">
           {lanes.map((lane, i) => (
@@ -382,9 +380,9 @@ function LandingSections() {
                   <li key={control}>＋ {control}</li>
                 ))}
               </ul>
-              <Action href={laneHref(lane.name)}>Choose {lane.name}</Action>
+              <Action href={lane.href}>Choose {lane.name}</Action>
               <div className="lane-foot">
-                Terms follow your mandate <ArrowUpRight size={15} />
+                Spending follows a mandate <ArrowUpRight size={15} />
               </div>
             </article>
           ))}
@@ -414,7 +412,7 @@ function LandingSections() {
             answers.
           </SplitWords>
           <SplitWords as="p" className="section-description">
-            The fundamentals behind private budgets and controlled agent spending.
+            The fundamentals of endowing an agent.
           </SplitWords>
           <Accordion defaultValue="0">
             {faq.map(([question, answer], i) => (
@@ -438,7 +436,7 @@ function LandingSections() {
           n="09"
           label="Resources"
           title={'Protocol\nnotes.'}
-          copy="A closer look at the rules, funding paths, and privacy behind Bursar."
+          copy="A closer look at endowments, mandates and the privacy behind Bursar."
           href="/blog"
           link="All articles"
         />

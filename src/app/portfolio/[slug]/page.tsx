@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { CREATE_HREF, capabilities } from '../../_content';
+import { capabilities } from '../../_content';
 import { Action } from '../../_components/action';
 import { Eyebrow } from '../../_components/eyebrow';
 import { pageMetadata } from '../../_components/metadata';
@@ -56,7 +56,7 @@ export default async function CapabilityPage({ params }: { readonly params: Prom
               <li key={point}>{point}</li>
             ))}
           </ul>
-          <Action href={CREATE_HREF}>Configure a mandate</Action>
+          <Action href={capability.action[1]}>{capability.action[0]}</Action>
         </article>
         <StructuredData
           graph={[

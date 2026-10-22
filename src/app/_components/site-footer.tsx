@@ -24,20 +24,20 @@ export function SiteFooter({ contact = false }: { readonly contact?: boolean }) 
         </div>
         <div className="footer-mini">
           <span>Purpose</span>
-          <span>Private agent budgets</span>
+          <span>Agent endowments</span>
           <span>Network</span>
           <span>Robinhood Chain</span>
         </div>
         <a className="footer-wordmark" href="/">
           BURSAR®
         </a>
-        <p className="eyebrow">Your agents. Your limits.</p>
+        <p className="eyebrow">Endowments for AI agents.</p>
       </div>
       <div className="footer-content">
         <Eyebrow>Contact</Eyebrow>
         <SplitWords as={contact ? 'h1' : 'h2'}>
-          Give autonomy
-          <br />a boundary.
+          Fund the agents
+          <br />you rely on.
         </SplitWords>
         <div className="community-contact">
           <SplitWords as="p">
@@ -63,11 +63,11 @@ export function SiteFooter({ contact = false }: { readonly contact?: boolean }) 
           </nav>
           <div>
             <p>
-              Private mandates.
+              Agent endowments.
               <br />
-              RWA-native budgets.
+              Mandates that set the limits.
               <br />
-              Agent-first infrastructure.
+              Live on Robinhood Chain.
             </p>
             <a className="text-link" href={CONSOLE_HREF}>
               Enter Bursar{' '}
