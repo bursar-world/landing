@@ -10,6 +10,13 @@ export const ENDOWMENTS_HREF = `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://ap
 export const ENDOW_HREF = `${ENDOWMENTS_HREF}/new`;
 export const TOKEN_HREF = `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.bursar.world'}/token`;
 
+/** $BURSAR, the token, as launched on Pons on Robinhood Chain. */
+export const BURSAR_TOKEN = {
+  symbol: 'BURSAR',
+  address: '0xe4d2422ed4d203a0f1ec2043a4db1eda426fca18',
+  tradeHref: 'https://www.ponsfamily.com/launchpad/0xe4d2422ed4d203a0f1ec2043a4db1eda426fca18',
+} as const;
+
 /** The create screen with a funding lane already chosen. */
 export function laneHref(lane: string): string {
   return `${CREATE_HREF}?lane=${lane.toLowerCase()}`;

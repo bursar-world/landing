@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import {
   ENDOWMENTS_HREF,
   ENDOW_HREF,
-  TOKEN_HREF,
+  BURSAR_TOKEN,
   capabilities,
   faq,
   lanes,
@@ -297,11 +297,12 @@ function LandingSections() {
               <br />
               Limits from their owners.
             </p>
-            <Eyebrow>$BRSR</Eyebrow>
+            <Eyebrow>${BURSAR_TOKEN.symbol}</Eyebrow>
             <p className="staker-copy">
-              Resolvers bond BRSR to rule on disputes, and stakers put it behind collateral-backed credit.
+              Bursar&rsquo;s token, live on Robinhood Chain.
+              <span className="token-address">{BURSAR_TOKEN.address}</span>
             </p>
-            <Action href={TOKEN_HREF}>See the token</Action>
+            <Action href={BURSAR_TOKEN.tradeHref}>Trade on Pons</Action>
           </div>
           <div className="role-cards">
             {roles.map(([label, title, copy]) => (

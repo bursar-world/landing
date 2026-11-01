@@ -24,3 +24,8 @@ picture{display:contents}
 
 /* The header button's logo, from the generated set (scripts/images.mjs) instead of the 1.2 MB source. */
 .site-header>.action:before{background-image:image-set(url(/img/brand-logo-192.b5c33d5218.avif) type("image/avif"),url(/img/brand-logo-192.7bb7007650.webp) type("image/webp"),url(/img/brand-logo-192.2c4ea7d4a7.jpg) type("image/jpeg"))}
+
+/* The token's contract address under its one-line description: full, copyable, never truncated. */
+.staker-copy .token-address{display:block;margin-top:8px;font-family:Geist Mono,monospace;font-size:12px;word-break:break-all;color:#4a3f4f}
+/* Phones drop the logo and tagline beside the role cards, but keep the token and its address. */
+@media (width<=800px){.role-intro{display:block}.role-intro>picture,.role-intro>p:not(.staker-copy){display:none}.role-intro>.staker-copy{margin-top:12px}}
