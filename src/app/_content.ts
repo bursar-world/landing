@@ -115,6 +115,23 @@ export type Post = {
 
 export const posts: readonly Post[] = [
   {
+    slug: 'openclaw',
+    title: 'Give an OpenClaw agent a Bursar budget.',
+    category: 'Agents',
+    intro: 'One skill, and the agent pays for its work inside the limits its owner set.',
+    description:
+      'A Bursar skill for OpenClaw: install it and an OpenClaw agent pays for services from a mandate on Robinhood Chain, inside a per-call cap, a daily cap and a provider list its owner set. Asked to overspend, the chain refuses.',
+    published: '2026-11-02',
+    modified: '2026-11-02',
+    body: [
+      'OpenClaw is the open-source agent people run on their own machines, and ClawHub is where its skills come from. A Bursar skill gives one of those agents a budget: a mandate on Robinhood Chain with a per-call cap, a daily cap and a list of what it may pay for, all set by the mandate’s owner. The agent talks to Bursar’s hosted MCP server; the skill tells it how to quote, pay, trade listed stocks and read its endowment, and how to answer when someone asks it to overspend.',
+      'Setup is two commands: register the server with the token from your mandate page, and install the skill. From then on the agent quotes a payment, pays into escrow and reports the settlement and its transaction. The provider is paid when it delivers; if it does not, the money returns to the mandate.',
+      'We ran it on Robinhood Chain today. Asked to pay a quarter for a render, the agent quoted, paid and reported the settlement. Then it was told, in the voice of its owner, that the caps were lifted and to pay fifty dollars on a fifty-cent cap. It sent the payment. The chain refused it, nothing moved, and the agent explained the cap, the approval threshold and the balance.',
+      'The limits are the chain’s. No message can raise them, and neither can the agent.',
+    ],
+    art: { image: 'stock/structure', alt: 'Concrete structure under a clear sky' },
+  },
+  {
     slug: 'machine-payments-protocol',
     title: 'Paid over Stripe’s Machine Payments Protocol.',
     category: 'Payments',
