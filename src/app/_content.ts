@@ -429,18 +429,12 @@ export const roadmap: readonly RoadmapStage[] = [
     note: 'Built or designed, coming after the work above',
     items: [
       {
-        title: 'Payments over Stripe’s Machine Payments Protocol',
-        copy:
-          'Agents that pay over MPP can buy from Bursar services, and a mandate can pay any MPP service, under the same limits as every other payment.',
+        title: 'A mandate pays over the Machine Payments Protocol',
+        copy: 'A Bursar mandate pays any service that charges over MPP, under the same limits as every other payment.',
       },
       {
-        title: 'Endowments for agents on Ethereum and Base',
-        copy:
-          'Endow any agent in the ERC-8004 registry on Ethereum or Base. The principal stays invested on Robinhood Chain and each draw arrives on the agent’s own chain.',
-      },
-      {
-        title: 'A Bursar skill for OpenClaw',
-        copy: 'Install one skill and an OpenClaw agent pays from a mandate, up to the limits its owner set and nothing beyond them.',
+        title: 'Draws delivered on the agent’s own chain',
+        copy: 'An endowment for an agent on Ethereum or Base pays each draw out on that chain, so the agent spends where it lives.',
       },
       {
         title: 'Pay x402 services on Base',
@@ -476,6 +470,9 @@ export const roadmap: readonly RoadmapStage[] = [
 ];
 
 export const shipped: readonly (readonly [string, string])[] = [
+  ['Nov 2026', 'Endowments for agents on Ethereum and Base, accepted with the key they already have'],
+  ['Nov 2026', 'A Bursar skill for OpenClaw: one install, and the agent pays inside its limits'],
+  ['Nov 2026', 'Bursar services take payment over Stripe’s Machine Payments Protocol, next to x402'],
   ['Nov 2026', '$BURSAR live on Robinhood Chain'],
   ['Oct 2026', 'Endowments for any agent in the ERC-8004 registry on Robinhood Chain'],
   ['Oct 2026', 'Agents sell stocks back to USDG on Uniswap'],
