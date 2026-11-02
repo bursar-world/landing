@@ -352,12 +352,76 @@ export const marqueeItems: readonly string[] = [
 
 export type NavLink = readonly [label: string, href: string];
 
+export type RoadmapItem = { readonly title: string; readonly copy: string };
+export type RoadmapStage = { readonly label: string; readonly note: string; readonly items: readonly RoadmapItem[] };
+
+/** The public roadmap. Shipped items carry the month they went live; the stages ahead carry no dates. */
+export const roadmap: readonly RoadmapStage[] = [
+  {
+    label: 'Now',
+    note: 'In progress',
+    items: [
+      {
+        title: 'The first endowments',
+        copy:
+          'We are endowing our own market-brief agent, which pays for its data from its draw, and two of the most active agents on Robinhood Chain. Each draw starts when the agent’s owner accepts.',
+      },
+      {
+        title: '$BURSAR at the center of the protocol',
+        copy:
+          'Staking, dispute bonds and the fee buyback move to $BURSAR. Stakers back the credit lane and earn its USDG spread, and are slashed when a credit line is written off. Protocol fees buy $BURSAR for stakers.',
+      },
+    ],
+  },
+  {
+    label: 'Next',
+    note: 'Built or designed, coming after the work above',
+    items: [
+      {
+        title: 'Pay x402 services on Base',
+        copy: 'A mandate pays any x402 service on Base in USDC, under the same limits as every other payment.',
+      },
+      {
+        title: 'An endowment leaderboard',
+        copy: 'Endowments ranked by principal, by patrons and by what each agent has earned back into its own principal.',
+      },
+    ],
+  },
+  {
+    label: 'Later',
+    note: 'After the launch settles',
+    items: [
+      {
+        title: 'Limits that grow with a clean record',
+        copy:
+          'An agent with a clean payment history earns wider limits, up to a ceiling its owner sets, and its standing shows on its ERC-8004 card.',
+      },
+    ],
+  },
+];
+
+export const shipped: readonly (readonly [string, string])[] = [
+  ['Nov 2026', '$BURSAR live on Robinhood Chain'],
+  ['Oct 2026', 'Endowments for any agent in the ERC-8004 registry on Robinhood Chain'],
+  ['Oct 2026', 'Agents sell stocks back to USDG on Uniswap'],
+  ['Oct 2026', 'Sixteen US stocks and funds under a mandate, each priced by Chainlink'],
+  ['Oct 2026', 'Claude, ChatGPT and Gemini pay from a mandate'],
+  ['Oct 2026', 'Packages for AgentKit, LangChain, the OpenAI Agents SDK and Vercel’s AI SDK'],
+  ['Oct 2026', 'x402 payments on Robinhood Chain, settled by Bursar'],
+  ['Oct 2026', 'Cloudflare Workers charge agents per call'],
+  ['Oct 2026', 'ERC-8004 identities for providers and agents'],
+  ['Oct 2026', 'Budgets owned by a Safe'],
+  ['Oct 2026', 'Funding from Base, Arc and Solana through Relay'],
+  ['Oct 2026', 'Mandates on Robinhood Chain: spending limits, escrow and rulings'],
+];
+
 export const menuLinks: readonly NavLink[] = [
   ['Home', '/'],
   ['Endowments', ENDOWMENTS_HREF],
   ['Capabilities', '/#capabilities'],
   ['How it works', '/#process'],
   ['Resources', '/#resources'],
+  ['Roadmap', '/roadmap'],
   ['Dashboard', CONSOLE_HREF],
 ];
 
@@ -366,6 +430,7 @@ export const footerLinks: readonly NavLink[] = [
   ['Endowments', ENDOWMENTS_HREF],
   ['Capabilities', '/#capabilities'],
   ['About', '/about'],
+  ['Roadmap', '/roadmap'],
   ['Contact', '/contact'],
   ['Resources', '/blog'],
   ['Dashboard', CONSOLE_HREF],

@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     page('/'),
     page('/about'),
+    page('/roadmap', '2026-11-02'),
     page('/portfolio'),
     ...capabilities.map((capability) => page(`/portfolio/${capability.slug}`)),
     page('/blog', posts.map((post) => post.modified).sort().at(-1)),

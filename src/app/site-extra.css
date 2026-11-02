@@ -29,3 +29,19 @@ picture{display:contents}
 .staker-copy .token-address{display:block;margin-top:8px;font-family:Geist Mono,monospace;font-size:12px;word-break:break-all;color:#4a3f4f}
 /* Phones drop the logo and tagline beside the role cards, but keep the token and its address. */
 @media (width<=800px){.role-intro{display:block}.role-intro>picture,.role-intro>p:not(.staker-copy){display:none}.role-intro>.staker-copy{margin-top:12px}}
+
+/* /roadmap: one row per stage, the stage label beside its items, the live list as dated lines. */
+.roadmap-lead{max-width:760px;margin:24px 0 0;color:#786b7d;font-size:20px;line-height:1.6}
+.roadmap{margin:64px 0 0;border-top:1px solid #cabbcf}
+.roadmap-stage{display:grid;grid-template-columns:minmax(160px,1fr) 3fr;gap:40px;padding:40px 0;border-bottom:1px solid #cabbcf}
+.roadmap-stage>header p{margin:10px 0 0;color:#786b7d;font-size:15px;line-height:1.5}
+.roadmap-stage ol{list-style:none;margin:0;padding:0;display:grid;gap:32px}
+.roadmap-stage h2{margin:0;font-size:28px;font-weight:400;letter-spacing:-.6px;line-height:1.2}
+.roadmap-stage li>p{margin:10px 0 0;max-width:680px;color:#786b7d;font-size:18px;line-height:1.6}
+.roadmap-shipped ol{gap:0}
+.roadmap-shipped li{display:grid;grid-template-columns:110px 1fr;gap:24px;align-items:baseline;padding:14px 0;border-top:1px solid #e3d8e5}
+.roadmap-shipped li:first-child{border-top:0;padding-top:0}
+.roadmap-shipped h2{font-size:20px;letter-spacing:-.2px}
+.roadmap-date{font-family:Geist Mono,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#4a3f4f}
+.roadmap-action{margin:48px 0 96px}
+@media (width<=800px){.roadmap-stage{grid-template-columns:1fr;gap:20px}.roadmap-stage h2{font-size:24px}.roadmap-shipped li{grid-template-columns:1fr;gap:4px}.roadmap-shipped h2{font-size:18px}}
