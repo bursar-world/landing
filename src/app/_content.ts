@@ -115,6 +115,23 @@ export type Post = {
 
 export const posts: readonly Post[] = [
   {
+    slug: 'machine-payments-protocol',
+    title: 'Paid over Stripe’s Machine Payments Protocol.',
+    category: 'Payments',
+    intro: 'One route answers MPP and x402 clients, in USDG on Robinhood Chain.',
+    description:
+      'Bursar services take payment over the Machine Payments Protocol: one route answers MPP and x402 clients in USDG on Robinhood Chain, settled by Bursar, with no key on the server and no ETH on the payer.',
+    published: '2026-11-02',
+    modified: '2026-11-02',
+    body: [
+      'The Machine Payments Protocol is the HTTP 402 payment standard Stripe and Tempo published this spring. A server answers a request with a payment challenge, the client pays and retries, and the server returns a receipt. Its SDK, mppx, runs stablecoin charges on any EVM chain it has been told about. Bursar now tells it about Robinhood Chain: USDG, the chain, the token’s signing domain, and Bursar’s facilitator behind them.',
+      'A service built on mppx adds one method, usdgCharge from @bursar/mpp, and its route answers a 402 that an MPP client and an x402 client both pay. Native MPP credentials and x402 ones settle through the same facilitator, so the server holds no key and the payer holds no ETH. mpp.dev lists integrations with the Cloudflare Agents SDK, the official TypeScript MCP SDK, OpenClaw and the Vercel AI SDK; a service that charges over MPP is open to all of them.',
+      'Both paths ran on Robinhood Chain today. A client built on mppx paid a one-cent quote in USDG, and a client built on the reference x402 packages paid the same route, each settled on chain within seconds.',
+      'Next: a Bursar mandate paying MPP services, under the limits its owner set.',
+    ],
+    art: { image: 'stock/treasury', alt: 'Stone facade in afternoon light' },
+  },
+  {
     slug: 'a-wallet-is-not-a-budget',
     title: 'A wallet is not a budget.',
     category: 'Mandates',
