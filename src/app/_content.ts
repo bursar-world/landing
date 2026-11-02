@@ -378,6 +378,20 @@ export const roadmap: readonly RoadmapStage[] = [
     note: 'Built or designed, coming after the work above',
     items: [
       {
+        title: 'Payments over Stripe’s Machine Payments Protocol',
+        copy:
+          'Agents that pay over MPP can buy from Bursar services, and a mandate can pay any MPP service, under the same limits as every other payment.',
+      },
+      {
+        title: 'Endowments for agents on Ethereum and Base',
+        copy:
+          'Endow any agent in the ERC-8004 registry on Ethereum or Base. The principal stays invested on Robinhood Chain and each draw arrives on the agent’s own chain.',
+      },
+      {
+        title: 'A Bursar skill for OpenClaw',
+        copy: 'Install one skill and an OpenClaw agent pays from a mandate, up to the limits its owner set and nothing beyond them.',
+      },
+      {
         title: 'Pay x402 services on Base',
         copy: 'A mandate pays any x402 service on Base in USDC, under the same limits as every other payment.',
       },
@@ -391,6 +405,16 @@ export const roadmap: readonly RoadmapStage[] = [
     label: 'Later',
     note: 'After the launch settles',
     items: [
+      {
+        title: 'Earnings on Base, back into the principal',
+        copy:
+          'An endowed agent sells its services to any x402 buyer on Base. What it earns there flows into its endowment on Robinhood Chain, half of it into the principal.',
+      },
+      {
+        title: 'Jobs in the ERC-8183 format',
+        copy:
+          'Bursar escrow takes jobs that follow ERC-8183, the agent commerce standard from the Ethereum Foundation’s dAI team and Virtuals, so any ERC-8183 client can open a job paid from a mandate.',
+      },
       {
         title: 'Limits that grow with a clean record',
         copy:
