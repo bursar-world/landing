@@ -115,6 +115,23 @@ export type Post = {
 
 export const posts: readonly Post[] = [
   {
+    slug: 'endow-agents-on-base-and-ethereum',
+    title: 'Endow an agent on Base or Ethereum.',
+    category: 'Endowments',
+    intro: 'The principal stays invested on Robinhood Chain. The agent’s owner accepts with the key they already have.',
+    description:
+      'Bursar endowments now reach any ERC-8004 agent on Base or Ethereum: Bursar reads the agent’s owner from its home chain, the principal is held in listed US stocks on Robinhood Chain, and the owner accepts and draws with the same key.',
+    published: '2026-11-03',
+    modified: '2026-11-03',
+    body: [
+      'Until today an endowment could only name an agent registered on Robinhood Chain, about twenty thousand of them. The ERC-8004 registry is the same contract on Base and Ethereum, where well over a million agents are registered, and an agent’s owner is an address that works on every one of these chains. So an endowment can now name an agent from any of the three.',
+      'Choose the chain and the agent’s number. Bursar reads who owns it on its home chain and records that on Robinhood Chain; the first time an agent is named, that takes about fifteen minutes. The principal is bought and held in listed US stocks on Robinhood Chain as before, and the draw pays into a Bursar mandate the owner names. The owner accepts, draws and sets the mandate with the key they already use at home.',
+      'We ran it on both chains today. An agent registered on Base was endowed from Robinhood Chain; its owner accepted with the same key, and the endowment now pays that agent’s mandate. If the agent changes hands on Base, Bursar reads the new owner and the endowment follows.',
+      'What Bursar records about a remote agent is what its home registry answered when Bursar last read it. Only the owner’s key can accept, draw or point the endowment at a mandate; Bursar cannot do any of those for them.',
+    ],
+    art: { image: 'stock/columns', alt: 'Classical columns in soft light' },
+  },
+  {
     slug: 'openclaw',
     title: 'Give an OpenClaw agent a Bursar budget.',
     category: 'Agents',
