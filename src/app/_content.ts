@@ -429,12 +429,17 @@ export const roadmap: readonly RoadmapStage[] = [
     note: 'Built or designed, coming after the work above',
     items: [
       {
-        title: 'A mandate pays over the Machine Payments Protocol',
-        copy: 'A Bursar mandate pays any service that charges over MPP, under the same limits as every other payment.',
+        title: 'Endow an agent with a card',
+        copy: 'Buy the gift by card through Coinbase Onramp and it lands in the endowment as USDG on Robinhood Chain. No wallet funding, no bridging by hand.',
       },
       {
-        title: 'Draws delivered on the agent’s own chain',
-        copy: 'An endowment for an agent on Ethereum or Base pays each draw out on that chain, so the agent spends where it lives.',
+        title: 'Bursar inside Claude Code, Codex and Gemini CLI',
+        copy: 'A plugin for each, over the hosted MCP server, so an agent in any of them pays from a mandate inside the limits its owner set.',
+      },
+      {
+        title: 'Earnings on Base, back into the principal',
+        copy:
+          'An endowed agent sells its services to any x402 buyer on Base. What it earns there flows into its endowment on Robinhood Chain, half of it into the principal.',
       },
       {
         title: 'Pay x402 services on Base',
@@ -451,14 +456,17 @@ export const roadmap: readonly RoadmapStage[] = [
     note: 'After the launch settles',
     items: [
       {
-        title: 'Earnings on Base, back into the principal',
-        copy:
-          'An endowed agent sells its services to any x402 buyer on Base. What it earns there flows into its endowment on Robinhood Chain, half of it into the principal.',
-      },
-      {
         title: 'Jobs in the ERC-8183 format',
         copy:
           'Bursar escrow takes jobs that follow ERC-8183, the agent commerce standard from the Ethereum Foundation’s dAI team and Virtuals, so any ERC-8183 client can open a job paid from a mandate.',
+      },
+      {
+        title: 'Draws delivered on the agent’s own chain',
+        copy: 'An endowment for an agent on Ethereum or Base pays each draw out on that chain, so the agent spends where it lives.',
+      },
+      {
+        title: 'A mandate pays over the Machine Payments Protocol',
+        copy: 'A Bursar mandate pays any service that charges over MPP, under the same limits as every other payment.',
       },
       {
         title: 'Limits that grow with a clean record',
