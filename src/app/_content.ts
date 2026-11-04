@@ -115,6 +115,23 @@ export type Post = {
 
 export const posts: readonly Post[] = [
   {
+    slug: 'claude-code-codex-gemini',
+    title: 'Bursar inside Claude Code, Codex and Gemini CLI.',
+    category: 'Agents',
+    intro: 'One install, and the agent in your terminal pays from a mandate inside the limits you set.',
+    description:
+      'Bursar plugins for Claude Code, Codex and Gemini CLI: one install connects the agent to a mandate on Robinhood Chain, with a per-call cap, a daily cap and a provider list its owner set, and refusals come from the chain.',
+    published: '2026-11-04',
+    modified: '2026-11-04',
+    body: [
+      'The agents people run in a terminal now come from three places: Claude Code, Codex and Gemini CLI. Each takes plugins, and each can talk to a remote MCP server. Bursar publishes one plugin for each, and all three connect the agent to Bursar’s hosted MCP server with the same instructions: quote first, pay once, and treat a refusal as the answer.',
+      'Setup is one install and one token. Create a connection on your mandate page, keep its token in your shell, then add the plugin: a marketplace and an install command in Claude Code, an extension URL in Gemini CLI, a short script for Codex. From then on the agent can inspect its mandate, quote a payment, pay a provider into escrow, buy or sell a listed US stock, and read its endowment, all within the per-call cap, the daily cap and the provider list you set.',
+      'We ran it today in Claude Code and in Codex, against the same mandate. Asked to quote a fifty-dollar payment on a fifty-cent cap, each agent asked the mandate and reported the refusal, with the cap, the approval threshold and the balance. The Gemini extension installs, stores the token in the keychain and connects to the server the same way.',
+      'The limits are the chain’s. Whichever agent holds the token, no prompt can raise them.',
+    ],
+    art: { image: 'stock/control', alt: 'Structured concrete stairs' },
+  },
+  {
     slug: 'endow-agents-on-base-and-ethereum',
     title: 'Endow an agent on Base or Ethereum.',
     category: 'Endowments',
@@ -433,10 +450,6 @@ export const roadmap: readonly RoadmapStage[] = [
         copy: 'Buy the gift by card through Coinbase Onramp and it lands in the endowment as USDG on Robinhood Chain. No wallet funding, no bridging by hand.',
       },
       {
-        title: 'Bursar inside Claude Code, Codex and Gemini CLI',
-        copy: 'A plugin for each, over the hosted MCP server, so an agent in any of them pays from a mandate inside the limits its owner set.',
-      },
-      {
         title: 'Earnings on Base, back into the principal',
         copy:
           'An endowed agent sells its services to any x402 buyer on Base. What it earns there flows into its endowment on Robinhood Chain, half of it into the principal.',
@@ -478,6 +491,7 @@ export const roadmap: readonly RoadmapStage[] = [
 ];
 
 export const shipped: readonly (readonly [string, string])[] = [
+  ['Nov 2026', 'Bursar inside Claude Code, Codex and Gemini CLI: one install, and the agent pays inside its limits'],
   ['Nov 2026', 'Endowments for agents on Ethereum and Base, accepted with the key they already have'],
   ['Nov 2026', 'A Bursar skill for OpenClaw: one install, and the agent pays inside its limits'],
   ['Nov 2026', 'Bursar services take payment over Stripe’s Machine Payments Protocol, next to x402'],
